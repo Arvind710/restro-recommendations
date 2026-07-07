@@ -3,6 +3,7 @@ import json
 import pandas as pd
 import numpy as np
 from datasets import load_dataset
+import ftfy
 
 def load_and_clean_data():
     print("Loading dataset from HuggingFace...")
@@ -14,6 +15,13 @@ def load_and_clean_data():
 
     df = dataset.to_pandas()
     print(f"Initial record count: {len(df)}")
+    
+    # Fix mojibake / encoding issues across string columns
+    print("Fixing text encoding issues using ftfy...")
+    for col in ['name', 'address', 'location', 'listed_in(city)', 'cuisines', 'dish_liked']:
+        if col in df.columns:
+            df[col] = df[col].apply(lambda x: ftfy.fix_text(str(x)) if pd.notna(x) else x)
+
     
     # 3. Filter to Bangalore
     df = df[df['listed_in(city)'].notna()]
