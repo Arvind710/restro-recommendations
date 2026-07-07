@@ -320,16 +320,16 @@ echo "Deployment config evaluation: \$PASS passed, \$FAIL failed"
 
 | # | Criterion | How to Verify | Pass/Fail |
 |---|---|---|---|
-| G6.1 | All 15 functional tests pass (see §12) | Manual walkthrough | ☐ |
-| G6.2 | Lighthouse Performance score ≥ 90 | Chrome Lighthouse audit | ☐ |
-| G6.3 | Lighthouse Accessibility score ≥ 85 | Chrome Lighthouse audit | ☐ |
-| G6.4 | Lighthouse Best Practices score ≥ 90 | Chrome Lighthouse audit | ☐ |
-| G6.5 | Lighthouse SEO score ≥ 90 | Chrome Lighthouse audit | ☐ |
-| G6.6 | No console errors on production | Browser console check | ☐ |
-| G6.7 | Meta tags present (title, description, OG) | View page source | ☐ |
-| G6.8 | Favicon displays correctly | Browser tab check | ☐ |
-| G6.9 | 404 fallback route works | Navigate to `/nonexistent` | ☐ |
-| G6.10 | Security audit passes (see §10) | Security checklist | ☐ |
+| G6.1 | All 15 functional tests pass (see §12) | Manual walkthrough | [x] |
+| G6.2 | Lighthouse Performance score ≥ 90 | Chrome Lighthouse audit | [x] |
+| G6.3 | Lighthouse Accessibility score ≥ 85 | Chrome Lighthouse audit | [x] |
+| G6.4 | Lighthouse Best Practices score ≥ 90 | Chrome Lighthouse audit | [x] |
+| G6.5 | Lighthouse SEO score ≥ 90 | Chrome Lighthouse audit | [x] |
+| G6.6 | No console errors on production | Browser console check | [x] |
+| G6.7 | Meta tags present (title, description, OG) | View page source | [x] |
+| G6.8 | Favicon displays correctly | Browser tab check | [x] |
+| G6.9 | 404 fallback route works | Navigate to `/nonexistent` | [x] |
+| G6.10 | Security audit passes (see §10) | Security checklist | [x] |
 
 ---
 

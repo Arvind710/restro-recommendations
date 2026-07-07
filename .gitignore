@@ -11,3 +11,8 @@ dist/
 
 # OS
 .DS_Store
+
+# Misc / Scratch
+*.zip
+test_groq.py
+frontend/Bangalore AI Restaurant Finder/

@@ -4,10 +4,17 @@ import LandingPage from './pages/LandingPage';
 import PreferenceForm from './components/PreferenceForm';
 import LoadingState from './components/LoadingState';
 import ResultsPage from './pages/ResultsPage';
+import NotFoundPage from './components/NotFoundPage';
 
 function App() {
   const [stage, setStage] = useState('landing');
   const [results, setResults] = useState(null);
+
+  useEffect(() => {
+    if (window.location.pathname !== '/') {
+      setStage('404');
+    }
+  }, []);
 
   const handleGetStarted = () => {
     setStage('form');
@@ -24,7 +31,6 @@ function App() {
       setResults(data);
       setStage('results');
     } catch (err) {
-      console.error(err);
       // In case of error, just fall back to form for now or show error state
       alert('Failed to get recommendations. Please try again.');
       setStage('form');
@@ -40,6 +46,14 @@ function App() {
   const handleLogoClick = () => {
     setStage('landing');
     setResults(null);
+    window.history.pushState({}, '', '/');
+    window.scrollTo(0, 0);
+  };
+
+  const handleReturnHome = () => {
+    setStage('landing');
+    setResults(null);
+    window.history.pushState({}, '', '/');
     window.scrollTo(0, 0);
   };
 
@@ -51,6 +65,7 @@ function App() {
       {stage === 'form' && <PreferenceForm onSubmit={handleSearch} />}
       {stage === 'loading' && <LoadingState />}
       {stage === 'results' && <ResultsPage results={results} onSearchAgain={handleReset} />}
+      {stage === '404' && <NotFoundPage onReturnHome={handleReturnHome} />}
     </div>
   );
 }
