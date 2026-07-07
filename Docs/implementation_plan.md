@@ -909,11 +909,11 @@ git commit -m "chore: vercel deployment config"
 
 ### ✅ Phase 5 Deliverables
 
-- [ ] Frontend deployed to Vercel
-- [ ] Environment variables configured
-- [ ] Railway CORS updated with Vercel origin
-- [ ] Live site fully functional
-- [ ] Git committed
+- [x] Frontend deployed to Vercel
+- [x] Environment variables configured
+- [x] Railway CORS updated with Vercel origin
+- [x] Live site fully functional
+- [x] Git committed
 
 ### 🧪 Phase 5 Evaluation Gate
 
@@ -921,14 +921,14 @@ git commit -m "chore: vercel deployment config"
 
 | # | Criterion | Pass/Fail |
 |---|---|---|
-| G5.1 | Vercel deployment completes without errors | ☐ |
-| G5.2 | `VITE_API_URL` environment variable set in Vercel | ☐ |
-| G5.3 | Production site loads at Vercel URL | ☐ |
-| G5.4 | Location dropdown populates from live backend | ☐ |
-| G5.5 | Full recommendation flow works on production | ☐ |
-| G5.6 | Railway CORS updated with Vercel domain (no CORS errors) | ☐ |
-| G5.7 | HTTPS enforced | ☐ |
-| G5.8 | No mixed content warnings in console | ☐ |
+| G5.1 | Vercel deployment completes without errors | [x] |
+| G5.2 | `VITE_API_URL` environment variable set in Vercel | [x] |
+| G5.3 | Production site loads at Vercel URL | [x] |
+| G5.4 | Location dropdown populates from live backend | [x] |
+| G5.5 | Full recommendation flow works on production | [x] |
+| G5.6 | Railway CORS updated with Vercel domain (no CORS errors) | [x] |
+| G5.7 | HTTPS enforced | [x] |
+| G5.8 | No mixed content warnings in console | [x] |
 
 > ⚠️ **Gate Rule**: All criteria must pass before proceeding to Phase 6.
 

@@ -305,14 +305,14 @@ echo "Deployment config evaluation: \$PASS passed, \$FAIL failed"
 
 | # | Criterion | How to Verify | Pass/Fail |
 |---|---|---|---|
-| G5.1 | Vercel deployment completes without errors | Vercel dashboard → build logs green | ☐ |
-| G5.2 | `VITE_API_URL` environment variable set | Vercel settings check | ☐ |
-| G5.3 | Production site loads at Vercel URL | Browser visit | ☐ |
-| G5.4 | Location dropdown populates from **live** backend | Network tab check on production | ☐ |
-| G5.5 | Full recommendation flow works on production | End-to-end test | ☐ |
-| G5.6 | Railway CORS updated with Vercel domain | No CORS errors in console | ☐ |
-| G5.7 | HTTPS enforced (Vercel auto-provides SSL) | Browser padlock icon | ☐ |
-| G5.8 | No mixed content warnings | Console check | ☐ |
+| G5.1 | Vercel deployment completes without errors | Vercel dashboard → build logs green | [x] |
+| G5.2 | `VITE_API_URL` environment variable set | Vercel settings check | [x] |
+| G5.3 | Production site loads at Vercel URL | Browser visit | [x] |
+| G5.4 | Location dropdown populates from **live** backend | Network tab check on production | [x] |
+| G5.5 | Full recommendation flow works on production | End-to-end test | [x] |
+| G5.6 | Railway CORS updated with Vercel domain | No CORS errors in console | [x] |
+| G5.7 | HTTPS enforced (Vercel auto-provides SSL) | Browser padlock icon | [x] |
+| G5.8 | No mixed content warnings | Console check | [x] |
 
 ---
 
