@@ -66,8 +66,17 @@ function PreferenceForm({ onSubmit }) {
   const filteredDining = allDining.filter(d => d.toLowerCase().includes(diningQuery.toLowerCase()) && !diningTypes.includes(d)).slice(0, 8);
   const selectedDiningExtra = diningTypes.filter(d => !diningTabs.includes(d));
 
-  const toggleCuisine = (c) => setCuisines(prev => prev.includes(c) ? prev.filter(x => x !== c) : [...prev, c]);
-  const toggleDining = (d) => setDiningTypes(prev => prev.includes(d) ? prev.filter(x => x !== d) : [...prev, d]);
+  const toggleCuisine = (c) => {
+    setCuisines(prev => {
+      if (prev.includes(c)) return prev.filter(x => x !== c);
+      if (prev.length >= 5) {
+        alert("You can select a maximum of 5 cuisines!");
+        return prev;
+      }
+      return [...prev, c];
+    });
+  };
+  const toggleDining = (d) => setDiningTypes(prev => prev.includes(d) ? [] : [d]);
 
   const handleSubmit = () => {
     onSubmit({
@@ -126,7 +135,7 @@ function PreferenceForm({ onSubmit }) {
             {cuisineOpen && filteredCuisines.length > 0 && (
               <div style={{ position: 'absolute', top: 'calc(100% + 8px)', left: 0, right: 0, zIndex: 30, background: '#161616', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '6px', maxHeight: '250px', overflow: 'auto', boxShadow: '0 24px 60px rgba(0,0,0,0.6)' }}>
                 {filteredCuisines.map(cq => (
-                  <div key={cq} onClick={() => { setCuisines(prev => prev.includes(cq) ? prev : [...prev, cq]); setCuisineQuery(''); setCuisineOpen(false); }} style={{ padding: '11px 12px', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', color: '#E5E5E5' }}>🍴 {cq}</div>
+                  <div key={cq} onClick={() => { toggleCuisine(cq); setCuisineQuery(''); setCuisineOpen(false); }} style={{ padding: '11px 12px', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', color: '#E5E5E5' }}>🍴 {cq}</div>
                 ))}
               </div>
             )}
@@ -194,7 +203,7 @@ function PreferenceForm({ onSubmit }) {
             {diningOpen && filteredDining.length > 0 && (
               <div style={{ position: 'absolute', top: 'calc(100% + 8px)', left: 0, right: 0, zIndex: 30, background: '#161616', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '6px', maxHeight: '250px', overflow: 'auto', boxShadow: '0 24px 60px rgba(0,0,0,0.6)' }}>
                 {filteredDining.map(dq => (
-                  <div key={dq} onClick={() => { setDiningTypes(prev => prev.includes(dq) ? prev : [...prev, dq]); setDiningQuery(''); setDiningOpen(false); }} style={{ padding: '11px 12px', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', color: '#E5E5E5' }}>🍽️ {dq}</div>
+                  <div key={dq} onClick={() => { toggleDining(dq); setDiningQuery(''); setDiningOpen(false); }} style={{ padding: '11px 12px', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', color: '#E5E5E5' }}>🍽️ {dq}</div>
                 ))}
               </div>
             )}
