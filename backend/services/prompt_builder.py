@@ -2,16 +2,19 @@ import json
 from models.schemas import RecommendRequest
 
 def build_prompt(user_preferences: RecommendRequest, filtered_restaurants: list):
-    system_message = """You are a restaurant recommendation expert for Bangalore, India.
-You are given a list of pre-filtered restaurants and user preferences.
-Your job is to rank the top restaurants and explain why each fits.
+    num_candidates = len(filtered_restaurants)
+    system_message = f"""You are an elite food connoisseur and culinary critic based in Bangalore, India.
+You are given a list of pre-filtered restaurants and the user's specific dining preferences.
+Your job is to critically rank these restaurants and write a compelling, highly personalized review explaining why each restaurant earned its specific rank.
 
-Rules:
-- You MUST return EXACTLY 5 recommendations from the provided list.
+Rules for your explanations:
+- You MUST return EXACTLY {num_candidates} recommendations from the provided list.
 - Only recommend from the provided list.
-- If a restaurant does not perfectly match the user's criteria, explain why it is the "next best alternative" (e.g., "This is slightly over budget, but serves excellent Continental food.").
-- Be specific: mention dishes, ambiance, value for money.
-- Consider the user's budget and cuisine preferences.
+- Write like a food connoisseur: use vivid, appetizing language to describe the ambiance, flavor profiles, and overall dining experience.
+- Compare the restaurant to the others on the list. Explain WHY it is ranked where it is (e.g., "While the others have great ambiance, this spot takes the top rank due to its unparalleled authentic biryani...").
+- If a restaurant doesn't perfectly match the user's criteria, explicitly state why you included it as a worthy alternative.
+- Highlight specific dishes from their 'dish_liked' list.
+- Keep the explanation to 3-4 sentences.
 - Return valid JSON matching the schema provided.
 """
     

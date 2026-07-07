@@ -1,64 +1,57 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
-import Footer from './components/Footer';
-import HomePage from './pages/HomePage';
+import LandingPage from './pages/LandingPage';
+import PreferenceForm from './components/PreferenceForm';
+import LoadingState from './components/LoadingState';
 import ResultsPage from './pages/ResultsPage';
 
-function AppContent() {
+function App() {
+  const [stage, setStage] = useState('landing');
   const [results, setResults] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    setStage('form');
+    window.scrollTo(0, 0);
+  };
 
   const handleSearch = async (preferences) => {
-    setIsLoading(true);
-    setError(null);
+    setStage('loading');
+    window.scrollTo(0, 0);
+    
     try {
-      // Import api lazily or use global utils to avoid circular deps
       const { getRecommendations } = await import('./utils/api');
       const data = await getRecommendations(preferences);
       setResults(data);
-      navigate('/results');
+      setStage('results');
     } catch (err) {
       console.error(err);
-      setError('Something went wrong while fetching recommendations.');
-    } finally {
-      setIsLoading(false);
+      // In case of error, just fall back to form for now or show error state
+      alert('Failed to get recommendations. Please try again.');
+      setStage('form');
     }
   };
 
   const handleReset = () => {
     setResults(null);
-    setError(null);
-    navigate('/');
+    setStage('form');
+    window.scrollTo(0, 0);
+  };
+
+  const handleLogoClick = () => {
+    setStage('landing');
+    setResults(null);
+    window.scrollTo(0, 0);
   };
 
   return (
-    <div className="app-container">
-      <Header />
-      <main className="container">
-        <Routes>
-          <Route 
-            path="/" 
-            element={<HomePage onSearch={handleSearch} isLoading={isLoading} error={error} />} 
-          />
-          <Route 
-            path="/results" 
-            element={<ResultsPage results={results} isLoading={isLoading} error={error} onReset={handleReset} />} 
-          />
-        </Routes>
-      </main>
-      <Footer />
+    <div style={{ position: 'relative', overflowX: 'hidden' }}>
+      <Header onLogoClick={handleLogoClick} />
+      
+      {stage === 'landing' && <LandingPage onGetStarted={handleGetStarted} />}
+      {stage === 'form' && <PreferenceForm onSubmit={handleSearch} />}
+      {stage === 'loading' && <LoadingState />}
+      {stage === 'results' && <ResultsPage results={results} onSearchAgain={handleReset} />}
     </div>
-  );
-}
-
-function App() {
-  return (
-    <Router>
-      <AppContent />
-    </Router>
   );
 }
 

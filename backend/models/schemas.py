@@ -17,12 +17,13 @@ class RestaurantRecommendation(BaseModel):
     cuisines: list[str]
     rating: float
     cost_for_two: int
+    votes: int
     rest_type: str
     online_order: bool
     book_table: bool
     dish_liked: list[str]
     ai_explanation: str
-    confidence: Optional[int] = None
+    confidence: Optional[float] = None
 
 class RecommendResponse(BaseModel):
     recommendations: list[RestaurantRecommendation]

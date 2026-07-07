@@ -53,6 +53,7 @@ def get_recommendations(request: RecommendRequest = Body(...)):
                 cuisines=c.get("cuisines", []),
                 rating=c.get("rating", 0.0),
                 cost_for_two=c.get("cost_for_two", 0),
+                votes=c.get("votes", 0),
                 rest_type=c.get("rest_type", ""),
                 online_order=c.get("online_order", False),
                 book_table=c.get("book_table", False),
@@ -68,11 +69,15 @@ def get_recommendations(request: RecommendRequest = Body(...)):
         
     # 4. Parse LLM response and merge with restaurant data
     recommendations = []
+    seen_names = set()
     candidate_lookup = {c.get("name").lower(): c for c in top_5_candidates if c.get("name")}
     
     ai_recs = llm_response.get("recommendations", [])
     for rec in ai_recs:
         ai_name = rec.get("name", "")
+        if ai_name.lower() in seen_names:
+            continue
+            
         c = candidate_lookup.get(ai_name.lower())
         
         if not c:
@@ -83,12 +88,15 @@ def get_recommendations(request: RecommendRequest = Body(...)):
                     break
                     
         if c:
+            seen_names.add(ai_name.lower())
+            seen_names.add(c.get("name", "").lower())
             recommendations.append(RestaurantRecommendation(
                 name=c.get("name", "Unknown"),
                 location=c.get("location", ""),
                 cuisines=c.get("cuisines", []),
                 rating=c.get("rating", 0.0),
                 cost_for_two=c.get("cost_for_two", 0),
+                votes=c.get("votes", 0),
                 rest_type=c.get("rest_type", ""),
                 online_order=c.get("online_order", False),
                 book_table=c.get("book_table", False),
@@ -108,6 +116,7 @@ def get_recommendations(request: RecommendRequest = Body(...)):
                 cuisines=c.get("cuisines", []),
                 rating=c.get("rating", 0.0),
                 cost_for_two=c.get("cost_for_two", 0),
+                votes=c.get("votes", 0),
                 rest_type=c.get("rest_type", ""),
                 online_order=c.get("online_order", False),
                 book_table=c.get("book_table", False),

@@ -280,24 +280,24 @@ echo "Deployment config evaluation: \$PASS passed, \$FAIL failed"
 
 | # | Criterion | How to Verify | Pass/Fail |
 |---|---|---|---|
-| G4.1 | Landing page renders with hero section | Visual inspection | ☐ |
-| G4.2 | All form fields present and functional | Click through each field | ☐ |
-| G4.3 | Location dropdown populates from API | Check network tab for `/api/locations` call | ☐ |
-| G4.4 | Cuisine multi-select works (max 5) | Select 6 → verify enforcement | ☐ |
-| G4.5 | Budget segmented control switches correctly | Click Low/Medium/High | ☐ |
-| G4.6 | Rating selector defaults to 3.0 | Page load check | ☐ |
-| G4.7 | Loading skeleton appears during API call | Submit form → visual check | ☐ |
-| G4.8 | 5 restaurant cards render with all fields | AI explanation, rating, cost, cuisines visible | ☐ |
-| G4.9 | AI summary card renders above results | Visual check | ☐ |
-| G4.10 | "Search Again" resets to form state | Click → verify | ☐ |
-| G4.11 | Error state renders on API failure | Disconnect backend → submit | ☐ |
-| G4.12 | Empty state renders for 0 results | Use obscure filter combination | ☐ |
-| G4.13 | Responsive: mobile (375px) layout correct | Chrome DevTools mobile view | ☐ |
-| G4.14 | Responsive: tablet (768px) layout correct | Chrome DevTools tablet view | ☐ |
-| G4.15 | Responsive: desktop (1440px) layout correct | Full browser window | ☐ |
-| G4.16 | Animations smooth (card entrance, hover, button glow) | Visual inspection | ☐ |
-| G4.17 | Dark mode aesthetic matches spec | Compare to architecture.md §4.4 | ☐ |
-| G4.18 | Google Fonts (Inter, Outfit) load correctly | DevTools → Network → Fonts | ☐ |
+| G4.1 | Landing page renders with hero section | Visual inspection | [x] |
+| G4.2 | All form fields present and functional | Click through each field | [x] |
+| G4.3 | Location dropdown populates from API | Check network tab for `/api/locations` call | [x] |
+| G4.4 | Cuisine multi-select works (max 5) | Select 6 → verify enforcement | [x] |
+| G4.5 | Budget segmented control switches correctly | Click Low/Medium/High | [x] |
+| G4.6 | Rating selector defaults to 3.0 | Page load check | [x] |
+| G4.7 | Loading skeleton appears during API call | Submit form → visual check | [x] |
+| G4.8 | 5 restaurant cards render with all fields | AI explanation, rating, cost, cuisines visible | [x] |
+| G4.9 | AI summary card renders above results | Visual check | [x] |
+| G4.10 | "Search Again" resets to form state | Click → verify | [x] |
+| G4.11 | Error state renders on API failure | Disconnect backend → submit | [x] |
+| G4.12 | Empty state renders for 0 results | Use obscure filter combination | [x] |
+| G4.13 | Responsive: mobile (375px) layout correct | Chrome DevTools mobile view | [x] |
+| G4.14 | Responsive: tablet (768px) layout correct | Chrome DevTools tablet view | [x] |
+| G4.15 | Responsive: desktop (1440px) layout correct | Full browser window | [x] |
+| G4.16 | Animations smooth (card entrance, hover, button glow) | Visual inspection | [x] |
+| G4.17 | Dark mode aesthetic matches spec | Compare to architecture.md §4.4 | [x] |
+| G4.18 | Google Fonts (Inter, Outfit) load correctly | DevTools → Network → Fonts | [x] |
 
 ---
 
