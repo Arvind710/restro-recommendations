@@ -235,13 +235,13 @@ echo "Results: $PASS passed, $FAIL failed"
 
 | # | Criterion | How to Verify | Pass/Fail |
 |---|---|---|---|
-| G3.1 | Railway deployment completes without errors | Railway dashboard → build logs green | ☐ |
-| G3.2 | Live health check passes | `curl https://<railway-url>/api/health` → `{"status": "ok"}` | ☐ |
-| G3.3 | Live `/api/locations` returns data | JSON array in response | ☐ |
-| G3.4 | Live `/api/recommend` returns AI recommendations | Full flow on production URL | ☐ |
-| G3.5 | Environment variables set correctly | `GROQ_API_KEY` and `ALLOWED_ORIGINS` in Railway dashboard | ☐ |
-| G3.6 | Cold start time < 30 seconds | Time first request after fresh deploy | ☐ |
-| G3.7 | HTTPS enforced (no plain HTTP) | Verify SSL certificate present | ☐ |
+| G3.1 | Railway deployment completes without errors | Railway dashboard → build logs green | [x] |
+| G3.2 | Live health check passes | `curl https://<railway-url>/api/health` → `{"status": "ok"}` | [x] |
+| G3.3 | Live `/api/locations` returns data | JSON array in response | [x] |
+| G3.4 | Live `/api/recommend` returns AI recommendations | Full flow on production URL | [x] |
+| G3.5 | Environment variables set correctly | `GROQ_API_KEY` and `ALLOWED_ORIGINS` in Railway dashboard | [x] |
+| G3.6 | Cold start time < 30 seconds | Time first request after fresh deploy | [x] |
+| G3.7 | HTTPS enforced (no plain HTTP) | Verify SSL certificate present | [x] |
 
 **Local Deployment Config Test** (`backend/scripts/test_deployment_config.sh`):
 

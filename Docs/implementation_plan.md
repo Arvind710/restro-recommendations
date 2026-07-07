@@ -632,10 +632,10 @@ BACKEND_URL = https://restro-api.up.railway.app
 
 ### ✅ Phase 3 Deliverables
 
-- [ ] Backend deployed to Railway
-- [ ] All endpoints responding correctly on live URL
-- [ ] Environment variables configured
-- [ ] `BACKEND_URL` noted for frontend
+- [x] Backend deployed to Railway
+- [x] All endpoints responding correctly on live URL
+- [x] Environment variables configured
+- [x] `BACKEND_URL` noted for frontend
 - [x] Git commit: `chore: add Procfile for Railway deployment`
 
 ### 🧪 Phase 3 Evaluation Gate
