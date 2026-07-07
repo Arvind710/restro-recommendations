@@ -6,9 +6,9 @@ const diningTabs = ["Buffet","Cafes","Delivery","Desserts","Dine-out","Drinks & 
 const restTypesList = ["Casual Dining","Quick Bites","Cafe","Bakery","Bar","Microbrewery","Pub","Dessert Parlor","Fine Dining","Lounge","Food Court","Beverage Shop","Sweet Shop","Kiosk","Mess","Bhojanalya","Club","Confectionery","Dhaba","Irani Cafe","Food Truck","Meat Shop","Pop Up","Fusion","Bar+Casual Dining","Cafe+Bakery","Casual Dining+Bar","Casual Dining+Cafe","Quick Bites+Cafe","Quick Bites+Bakery","Dessert Parlor+Bakery","Sweet Shop+Quick Bites","Fine Dining+Bar","Lounge+Bar","Microbrewery+Casual Dining","Pub+Casual Dining","Cafe+Casual Dining","Bakery+Dessert Parlor","Quick Bites+Dessert Parlor","Casual Dining+Microbrewery"];
 const allDining = [...diningGeneral, ...restTypesList.filter(r => !diningGeneral.includes(r))];
 const budgets = [
-  {key:'low',label:'Low',sub:'≤ ₹500'},
-  {key:'medium',label:'Medium',sub:'₹500–1500'},
-  {key:'high',label:'High',sub:'₹1500+'}
+  { key: 'low', label: 'Low', sub: '≤ ₹500' },
+  { key: 'medium', label: 'Medium', sub: '₹500–1500' },
+  { key: 'high', label: 'High', sub: '₹1500+' }
 ];
 
 const baseChip = {
@@ -34,6 +34,7 @@ function PreferenceForm({ onSubmit }) {
   const [cuisines, setCuisines] = useState([]);
   const [cuisineQuery, setCuisineQuery] = useState('');
   const [cuisineOpen, setCuisineOpen] = useState(false);
+  const [cuisineError, setCuisineError] = useState('');
 
   const [budget, setBudget] = useState('medium');
   const [minRating, setMinRating] = useState(4.0);
@@ -68,11 +69,15 @@ function PreferenceForm({ onSubmit }) {
 
   const toggleCuisine = (c) => {
     setCuisines(prev => {
-      if (prev.includes(c)) return prev.filter(x => x !== c);
+      if (prev.includes(c)) {
+        setCuisineError('');
+        return prev.filter(x => x !== c);
+      }
       if (prev.length >= 5) {
-        alert("You can select a maximum of 5 cuisines!");
+        setCuisineError("You can only select up to 5 cuisines.");
         return prev;
       }
+      setCuisineError('');
       return [...prev, c];
     });
   };
@@ -155,6 +160,12 @@ function PreferenceForm({ onSubmit }) {
                 <button key={c} onClick={() => toggleCuisine(c)} style={cuisines.includes(c) ? selChip : baseChip}>{c}</button>
               ))}
             </div>
+            
+            {cuisineError && (
+              <div style={{ color: '#ef4444', fontSize: '13px', marginTop: '10px', fontWeight: 500, animation: 'fadeUp 0.3s' }}>
+                ⚠️ {cuisineError}
+              </div>
+            )}
           </div>
 
           {/* Budget */}
