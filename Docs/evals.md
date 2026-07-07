@@ -100,12 +100,12 @@ graph LR
 
 | # | Criterion | How to Verify | Pass/Fail |
 |---|---|---|---|
-| G0.1 | Directory structure matches [architecture.md §8](file:///Users/arvindchaudhary/Downloads/Restro%20recommendations/Docs/architecture.md) | `tree` command output matches spec | ☐ |
-| G0.2 | Python venv activates without errors | `source venv/bin/activate && python --version` → 3.11+ | ☐ |
-| G0.3 | `requirements.txt` installs cleanly | `pip install -r requirements.txt` → no errors | ☐ |
-| G0.4 | `.env.example` contains all required vars | Verify `GROQ_API_KEY` and `ALLOWED_ORIGINS` present | ☐ |
-| G0.5 | `.gitignore` excludes `venv/`, `node_modules/`, `.env` | `cat .gitignore` confirms | ☐ |
-| G0.6 | Git repo initialized with first commit | `git log --oneline -1` returns scaffold commit | ☐ |
+| G0.1 | Directory structure matches [architecture.md §8](file:///Users/arvindchaudhary/Downloads/Restro%20recommendations/Docs/architecture.md) | `tree` command output matches spec | [x] |
+| G0.2 | Python venv activates without errors | `source venv/bin/activate && python --version` → 3.11+ | [x] |
+| G0.3 | `requirements.txt` installs cleanly | `pip install -r requirements.txt` → no errors | [x] |
+| G0.4 | `.env.example` contains all required vars | Verify `GROQ_API_KEY` and `ALLOWED_ORIGINS` present | [x] |
+| G0.5 | `.gitignore` excludes `venv/`, `node_modules/`, `.env` | `cat .gitignore` confirms | [x] |
+| G0.6 | Git repo initialized with first commit | `git log --oneline -1` returns scaffold commit | [x] |
 
 ---
 
@@ -113,16 +113,16 @@ graph LR
 
 | # | Criterion | How to Verify | Pass/Fail |
 |---|---|---|---|
-| G1.1 | `restaurants.json` exists and is valid JSON | `python3 -c "import json; json.load(open('data/restaurants.json'))"` | ☐ |
-| G1.2 | Record count is in expected range (3,000–8,000) | Count check script | ☐ |
-| G1.3 | All records are Bangalore-only | Every `location` is a known Bangalore neighbourhood | ☐ |
-| G1.4 | No `NaN`, `null`, or `"NEW"` in `rating` field | Schema validation script | ☐ |
-| G1.5 | `cost_for_two` is integer, no commas/symbols | Type validation script | ☐ |
-| G1.6 | `cuisines` and `dish_liked` are proper JSON arrays | Schema validation script | ☐ |
-| G1.7 | No duplicate entries (same name + address) | Deduplication check | ☐ |
-| G1.8 | All 12 cleaned schema fields present per record | Field existence check | ☐ |
-| G1.9 | Ratings within valid range [0.0, 5.0] | Range validation | ☐ |
-| G1.10 | At least 25 unique locations exist | `len(set(r['location'] for r in data)) >= 25` | ☐ |
+| G1.1 | `restaurants.json` exists and is valid JSON | `python3 -c "import json; json.load(open('data/restaurants.json'))"` | [x] |
+| G1.2 | Record count is in expected range (3,000–8,000) | Count check script | [x] |
+| G1.3 | All records are Bangalore-only | Every `location` is a known Bangalore neighbourhood | [x] |
+| G1.4 | No `NaN`, `null`, or `"NEW"` in `rating` field | Schema validation script | [x] |
+| G1.5 | `cost_for_two` is integer, no commas/symbols | Type validation script | [x] |
+| G1.6 | `cuisines` and `dish_liked` are proper JSON arrays | Schema validation script | [x] |
+| G1.7 | No duplicate entries (same name + address) | Deduplication check | [x] |
+| G1.8 | All 12 cleaned schema fields present per record | Field existence check | [x] |
+| G1.9 | Ratings within valid range [0.0, 5.0] | Range validation | [x] |
+| G1.10 | At least 25 unique locations exist | `len(set(r['location'] for r in data)) >= 25` | [x] |
 
 **Validation Script** (`backend/scripts/validate_data.py`):
 
@@ -177,18 +177,18 @@ else:
 
 | # | Criterion | How to Verify | Pass/Fail |
 |---|---|---|---|
-| G2.1 | `GET /api/health` returns `{"status": "ok"}` | `curl` check → 200 OK | ☐ |
-| G2.2 | `GET /api/locations` returns 25+ locations | JSON array length check | ☐ |
-| G2.3 | `GET /api/cuisines` returns 30+ cuisines | JSON array length check | ☐ |
-| G2.4 | `POST /api/recommend` with valid input → 5 results | Full flow test | ☐ |
-| G2.5 | Each recommendation has `ai_explanation` field | Response schema check | ☐ |
-| G2.6 | Response includes `summary` field | Response schema check | ☐ |
-| G2.7 | Invalid input returns 422 with meaningful errors | Validation error test | ☐ |
-| G2.8 | Unknown location returns empty results gracefully | Edge case test | ☐ |
-| G2.9 | Groq API failure triggers fallback (no crash) | Simulate by using invalid key | ☐ |
-| G2.10 | CORS headers present for allowed origins | `curl -v` check for `Access-Control-Allow-Origin` | ☐ |
-| G2.11 | Swagger docs accessible at `/docs` | Browser visit | ☐ |
-| G2.12 | Duplicate request within 5 min returns cached response | Response time comparison | ☐ |
+| G2.1 | `GET /api/health` returns `{"status": "ok"}` | `curl` check → 200 OK | [x] |
+| G2.2 | `GET /api/locations` returns 25+ locations | JSON array length check | [x] |
+| G2.3 | `GET /api/cuisines` returns 30+ cuisines | JSON array length check | [x] |
+| G2.4 | `POST /api/recommend` with valid input → 5 results | Full flow test | [x] |
+| G2.5 | Each recommendation has `ai_explanation` field | Response schema check | [x] |
+| G2.6 | Response includes `summary` field | Response schema check | [x] |
+| G2.7 | Invalid input returns 422 with meaningful errors | Validation error test | [x] |
+| G2.8 | Unknown location returns empty results gracefully | Edge case test | [x] |
+| G2.9 | Groq API failure triggers fallback (no crash) | Simulate by using invalid key | [x] |
+| G2.10 | CORS headers present for allowed origins | `curl -v` check for `Access-Control-Allow-Origin` | [x] |
+| G2.11 | Swagger docs accessible at `/docs` | Browser visit | [x] |
+| G2.12 | Duplicate request within 5 min returns cached response | Response time comparison | [x] |
 
 **Backend Test Script** (`backend/scripts/test_api.sh`):
 
@@ -242,6 +242,37 @@ echo "Results: $PASS passed, $FAIL failed"
 | G3.5 | Environment variables set correctly | `GROQ_API_KEY` and `ALLOWED_ORIGINS` in Railway dashboard | ☐ |
 | G3.6 | Cold start time < 30 seconds | Time first request after fresh deploy | ☐ |
 | G3.7 | HTTPS enforced (no plain HTTP) | Verify SSL certificate present | ☐ |
+
+**Local Deployment Config Test** (`backend/scripts/test_deployment_config.sh`):
+
+```bash
+#!/bin/bash
+echo "Evaluating Backend Deployment Configuration..."
+
+PASS=0
+FAIL=0
+
+if [ -f "backend/Procfile" ]; then
+    echo "✅ Procfile exists"; ((PASS++))
+else
+    echo "❌ Procfile is missing"; ((FAIL++))
+fi
+
+if [ -f "backend/runtime.txt" ]; then
+    echo "✅ runtime.txt exists"; ((PASS++))
+else
+    echo "❌ runtime.txt is missing"; ((FAIL++))
+fi
+
+if grep -q "uvicorn main:app" "backend/Procfile"; then
+    echo "✅ Procfile contains correct uvicorn command"; ((PASS++))
+else
+    echo "❌ Procfile command is incorrect"; ((FAIL++))
+fi
+
+echo "————————————————"
+echo "Deployment config evaluation: \$PASS passed, \$FAIL failed"
+```
 
 ---
 
@@ -408,9 +439,10 @@ After ETL, generate and verify these metrics:
 | F6 | Rating filter: `min_rating = 0` | `0.0` | All restaurants pass rating filter | 3.2.3 |
 | F7 | Dining type filter | `"Dine-out"` | Only dine-out restaurants returned | — |
 | F8 | Dining type null → no filter | `null` | All dining types included | 3.2.6 |
-| F9 | Sorting: rating DESC, votes DESC | Multiple results | Higher rated restaurants first; ties broken by votes | 3.4.4 |
-| F10 | Limit: top 15 candidates | 100+ matches | Only 15 sent to LLM | 3.4.3 |
-| F11 | Fewer than 15 matches | 3 matches | All 3 sent to LLM | 3.4.1 |
+| F9 | Keyword Scoring | Preferences = "beer" | Restaurants with "beer" in dish_liked rank higher | — |
+| F10 | Sorting: pref_score, rating, votes | Multiple results | High pref_score first, then rating, then votes | 3.4.4 |
+| F11 | Limit: top 15 candidates | 100+ matches | Only 15 sent to LLM | 3.4.3 |
+| F12 | Fewer than 15 matches | 3 matches | All 3 sent to LLM | 3.4.1 |
 
 ### 4.3 Error Handling Evaluation
 

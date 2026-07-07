@@ -250,8 +250,9 @@ User Input → Filter Pipeline:
 3. Budget Filter      → cost_for_two within budget range
 4. Rating Filter      → rating >= min_rating
 5. Dining Type        → listed_in_type matches if provided
-6. Sort by            → rating DESC, votes DESC
-7. Limit              → Top 15 candidates → send to LLM
+6. Keyword Score      → match preferences vs dish_liked, rest_type, name
+7. Sort by            → pref_score DESC, rating DESC, votes DESC
+8. Limit              → Top 15 candidates → send to LLM
 ```
 
 ### 3.5 Prompt Engineering (`prompt_builder.py`)

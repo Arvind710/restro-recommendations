@@ -147,12 +147,12 @@ git commit -m "chore: initial project scaffolding"
 
 ### ✅ Phase 0 Deliverables
 
-- [ ] Project directory structure created
-- [ ] Python venv initialized
-- [ ] `requirements.txt` with all dependencies
-- [ ] `.env.example` with placeholder values
-- [ ] `.gitignore` configured
-- [ ] Git initialized with first commit
+- [x] Project directory structure created
+- [x] Python venv initialized
+- [x] `requirements.txt` with all dependencies
+- [x] `.env.example` with placeholder values
+- [x] `.gitignore` configured
+- [x] Git initialized with first commit
 
 ### 🧪 Phase 0 Evaluation Gate
 
@@ -263,19 +263,19 @@ Print and note down for later use:
 
 | Metric | Value |
 |---|---|
-| Total restaurants after cleaning | ? (expected: 3000–8000) |
-| Unique locations | ? (expected: 30–50) |
-| Unique cuisines | ? (expected: 50–100) |
+| Total restaurants after cleaning | 9475 (expected: 3000–8000) |
+| Unique locations | 92 (expected: 30–50) |
+| Unique cuisines | 105 (expected: 50–100) |
 | Rating range | 1.0 – 5.0 |
 | Cost range | ₹50 – ₹6000+ |
 
 ### ✅ Phase 1 Deliverables
 
-- [ ] `backend/scripts/prepare_data.py` created and tested
-- [ ] `backend/data/restaurants.json` generated
-- [ ] Data validated: correct schema, Bangalore-only, no null ratings
-- [ ] Metadata summary noted (location count, cuisine count, record count)
-- [ ] Git commit: `feat: data pipeline — ETL from HuggingFace to cleaned JSON`
+- [x] `backend/scripts/prepare_data.py` created and tested
+- [x] `backend/data/restaurants.json` generated
+- [x] Data validated: correct schema, Bangalore-only, no null ratings
+- [x] Metadata summary noted (location count, cuisine count, record count)
+- [x] Git commit: `feat: data pipeline — ETL from HuggingFace to cleaned JSON`
 
 ### 🧪 Phase 1 Evaluation Gate
 
@@ -349,16 +349,18 @@ Implement:
 
 ```
 Filter Pipeline:
-┌─────────────────────────────────────────────────┐
-│ 1. Location     → exact match (case-insensitive)│
-│ 2. Cuisines     → any overlap (intersection)    │
-│ 3. Budget       → cost_for_two in range         │
-│    Low: 0–500  |  Medium: 500–1500  |  High: 1500+
-│ 4. Min Rating   → rating >= min_rating          │
-│ 5. Dining Type  → listed_in_type == type        │
-│ 6. Sort         → rating DESC, votes DESC       │
-│ 7. Limit        → Top 15 candidates             │
-└─────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────┐
+│ 1. Location     → exact match (case-insensitive)           │
+│ 2. Cuisines     → any overlap (intersection)               │
+│ 3. Budget       → cost_for_two in range                    │
+│    Low: 0–500  |  Medium: 500–1500  |  High: 1500+         │
+│ 4. Min Rating   → rating >= min_rating                     │
+│ 5. Dining Type  → listed_in_type == type                   │
+│ 6. Keyword Score→ match preferences against dish_liked (3x),│
+│                   rest_type (2x), and name (1x)            │
+│ 7. Sort         → pref_score DESC, rating DESC, votes DESC │
+│ 8. Limit        → Top 15 candidates                        │
+└────────────────────────────────────────────────────────────┘
 ```
 
 #### 2A.3 Create `backend/routers/recommend.py`
@@ -530,15 +532,15 @@ git commit -m "feat: complete backend — API, filtering, Groq LLM integration"
 
 ### ✅ Phase 2 Deliverables
 
-- [ ] `backend/models/schemas.py` — Pydantic models
-- [ ] `backend/services/data_service.py` — data loading + filtering
-- [ ] `backend/services/prompt_builder.py` — LLM prompt construction
-- [ ] `backend/services/llm_service.py` — Groq API client with retry + cache
-- [ ] `backend/routers/recommend.py` — all 4 endpoints
-- [ ] `backend/main.py` — FastAPI app with CORS
-- [ ] All endpoints tested manually
-- [ ] Edge cases handled (empty results, API failures)
-- [ ] Git committed
+- [x] `backend/models/schemas.py` — Pydantic models
+- [x] `backend/services/data_service.py` — data loading + filtering
+- [x] `backend/services/prompt_builder.py` — LLM prompt construction
+- [x] `backend/services/llm_service.py` — Groq API client with retry + cache
+- [x] `backend/routers/recommend.py` — all 4 endpoints
+- [x] `backend/main.py` — FastAPI app with CORS
+- [x] All endpoints tested manually
+- [x] Edge cases handled (empty results, API failures)
+- [x] Git committed
 
 ### 🧪 Phase 2 Evaluation Gate
 
@@ -546,18 +548,18 @@ git commit -m "feat: complete backend — API, filtering, Groq LLM integration"
 
 | # | Criterion | Pass/Fail |
 |---|---|---|
-| G2.1 | `GET /api/health` → `{"status": "ok"}` (200) | ☐ |
-| G2.2 | `GET /api/locations` → 25+ locations | ☐ |
-| G2.3 | `GET /api/cuisines` → 30+ cuisines | ☐ |
-| G2.4 | `POST /api/recommend` with valid input → 5 results with `ai_explanation` | ☐ |
-| G2.5 | Response includes `summary` field | ☐ |
-| G2.6 | Invalid input → 422 with meaningful errors | ☐ |
-| G2.7 | Unknown location → empty results (no crash) | ☐ |
-| G2.8 | Groq API failure → fallback (filtered results without AI) | ☐ |
-| G2.9 | CORS headers present for allowed origins | ☐ |
-| G2.10 | Swagger docs accessible at `/docs` | ☐ |
-| G2.11 | Duplicate request within 5 min → cached response | ☐ |
-| G2.12 | LLM quality rubric average ≥ 3.5/5 across 5 test queries | ☐ |
+| G2.1 | `GET /api/health` → `{"status": "ok"}` (200) | [x] |
+| G2.2 | `GET /api/locations` → 25+ locations | [x] |
+| G2.3 | `GET /api/cuisines` → 30+ cuisines | [x] |
+| G2.4 | `POST /api/recommend` with valid input → 5 results with `ai_explanation` | [x] |
+| G2.5 | Response includes `summary` field | [x] |
+| G2.6 | Invalid input → 422 with meaningful errors | [x] |
+| G2.7 | Unknown location → empty results (no crash) | [x] |
+| G2.8 | Groq API failure → fallback (filtered results without AI) | [x] |
+| G2.9 | CORS headers present for allowed origins | [x] |
+| G2.10 | Swagger docs accessible at `/docs` | [x] |
+| G2.11 | Duplicate request within 5 min → cached response | [x] |
+| G2.12 | LLM quality rubric average ≥ 3.5/5 across 5 test queries | [x] |
 
 **Run test script**: `bash scripts/test_api.sh` (see [evals.md §4.1](file:///Users/arvindchaudhary/Downloads/Restro%20recommendations/Docs/evals.md))
 
@@ -634,7 +636,7 @@ BACKEND_URL = https://restro-api.up.railway.app
 - [ ] All endpoints responding correctly on live URL
 - [ ] Environment variables configured
 - [ ] `BACKEND_URL` noted for frontend
-- [ ] Git commit: `chore: add Procfile for Railway deployment`
+- [x] Git commit: `chore: add Procfile for Railway deployment`
 
 ### 🧪 Phase 3 Evaluation Gate
 
